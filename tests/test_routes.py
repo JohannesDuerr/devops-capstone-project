@@ -175,9 +175,9 @@ class TestAccountService(TestCase):
         """It should not allow an illegal method call"""
         resp = self.client.delete(BASE_URL)
         self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
     def test_delete_account_not_found(self):
         """DELETE /accounts/{id} returns 204 and does nothing when not found."""
         resp = self.client.delete("/accounts/0")
         self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(resp.get_data(as_text=True), "")
-
